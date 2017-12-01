@@ -3,7 +3,7 @@
 + in difference with the C-Version, it's possible to calculate with more than 2 matrices, by chaining the last result 
 
 usage with g++ compiler:
-´´´
+```
 $ g++ main.cpp matrix.cpp -std=c++11 -o main
 $ ./main
 n: new calculation
@@ -127,4 +127,4 @@ n: new calculation
 c: continue calculation with last result
 any key, except n, c: end program
 x
-´´´
+```
