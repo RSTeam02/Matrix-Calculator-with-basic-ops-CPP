@@ -1,5 +1,6 @@
 # Matrix Calculator with basic operations (+,-,*) C++
 
++ 7.12: temporary array removed
 + in difference with the C-Version, it's possible to calculate with more than 2 matrices, by chaining the last result 
 
 usage with g++ compiler:

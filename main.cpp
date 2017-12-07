@@ -3,7 +3,7 @@
  * C++ Version
  * 
  * init 2 dim matrix as vector
- * calculate 2 Matrices +,-,*
+ * calculate n Matrices +,-,*
  *  
  */
 
@@ -44,21 +44,19 @@ short *validRowCol(){
 
 //input validation of matrix(ces), append operand for continue calculation t/f
 vector<Matrix> validMat(int numOfMat){
-	vector<vector<int>>m[numOfMat];	
-	int tmpArr[numOfMat];
 	vector<Matrix> a;	
-	a.reserve(numOfMat);	 	
-
+	a.reserve(numOfMat);	
+	
 	for(int n = 0; n < numOfMat; n++){
 		short *rowCol = validRowCol();
-		int tmpArr[n][rowCol[0]][rowCol[1]];
+		vector<vector<vector<int>>> m(numOfMat, vector<vector<int>>(rowCol[0], vector<int>(rowCol[1])));
 		for (int i =0 ; i < rowCol[0]; i++){
 			for (int j =0 ; j < rowCol[1]; j++){
 				do{			
 					int tmp = 0;
 					cout <<"A"<<countMat<<": "<< "a"<<(i+1)<<(j+1)<<"=";
 					cin >> tmp;
-					tmpArr[n][i][j]=tmp;	
+					m[n][i][j]=tmp;	
 					if (!cin){
 						cout<<"not an integer, repeat input\n";
 						cin.clear();
@@ -69,21 +67,7 @@ vector<Matrix> validMat(int numOfMat){
 				}while(1);					
 			}	
 		}
-		for (int i =0 ; i < rowCol[0]; i++){
-			m[n].push_back(vector<int>());
-		}
 
-		for (int i =0 ; i < rowCol[1]; i++){
-			for (int j =0 ; j < rowCol[0]; j++){
-				m[n][j].push_back(0);
-			}	
-		}
-		
-		for (int i =0 ; i < rowCol[0]; i++){
-			for (int j =0 ; j < rowCol[1]; j++){
-				m[n][i][j] = tmpArr[n][i][j];			
-			}	
-		}
 		a.emplace_back(m[n]);
 		a[n].printRes(a[n]);
 		countMat++;
