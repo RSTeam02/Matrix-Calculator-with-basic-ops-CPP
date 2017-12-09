@@ -46,12 +46,14 @@ short *validRowCol(){
 vector<Matrix> validMat(int numOfMat){
 	vector<Matrix> a;	
 	a.reserve(numOfMat);	
-	
+	vector<vector<vector<int>>> m;
 	for(int n = 0; n < numOfMat; n++){
 		short *rowCol = validRowCol();
-		vector<vector<vector<int>>> m(numOfMat, vector<vector<int>>(rowCol[0], vector<int>(rowCol[1])));
+		m.resize(numOfMat);
 		for (int i =0 ; i < rowCol[0]; i++){
+			m[n].resize(rowCol[0]);
 			for (int j =0 ; j < rowCol[1]; j++){
+				m[n][i].resize(rowCol[1]);
 				do{			
 					int tmp = 0;
 					cout <<"A"<<countMat<<": "<< "a"<<(i+1)<<(j+1)<<"=";
@@ -103,6 +105,12 @@ void resultMat(bool appendLast, char op, vector<Matrix> m){
 	result.printRes(result);
 }
 
+void testOutput(vector<Matrix> m){
+	for(auto x : m){
+		x.printRes(x);
+	}
+}
+
 //start main
 int main(){	
 	bool firstCalc = true;
@@ -118,6 +126,7 @@ int main(){
 			op = validOp();
 			cout<<"Result:\n";	
 			resultMat(false, op, m_ab);
+			//testOutput(m_ab);
 			firstCalc = false;
 		//chain every other mat with last result: result = result operation m_x
 		}else if(selection == 'c'){
